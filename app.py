@@ -1,6 +1,6 @@
 # ============================================
 # 🇮🇳 INDIA HIDDEN PATTERNS DASHBOARD
-# Simple, Clean & Professional
+# Mobile-Friendly • Light Theme • Professional
 # ============================================
 
 import streamlit as st
@@ -22,18 +22,28 @@ st.set_page_config(
 )
 
 # ============================================
-# SIMPLE PROFESSIONAL CSS
+# PROFESSIONAL CSS - LIGHT MODE & MOBILE FRIENDLY
 # ============================================
 st.markdown("""
     <style>
     /* Hide Streamlit branding */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
+    header {visibility: hidden;}
+    
+    /* Force Light Background Everywhere */
+    .stApp {
+        background-color: #FFFFFF !important;
+    }
+    
+    .main {
+        background-color: #FFFFFF !important;
+    }
     
     /* Custom title styling */
     .main-header {
         font-size: 2.5rem;
-        color: #1f77b4;
+        color: #1f77b4 !important;
         text-align: center;
         font-weight: bold;
         padding: 1rem 0;
@@ -41,22 +51,235 @@ st.markdown("""
     
     .sub-header {
         font-size: 1.2rem;
-        color: #666;
+        color: #475569 !important;
         text-align: center;
         padding-bottom: 2rem;
     }
     
-    /* Metric cards styling */
-    [data-testid="stMetric"] {
-        background-color: #f8f9fa;
-        padding: 1rem;
-        border-radius: 10px;
-        border-left: 5px solid #1f77b4;
+    /* All headings - DARK text */
+    h1, h2, h3, h4, h5, h6 {
+        color: #0F172A !important;
     }
     
-    /* Sidebar styling */
+    /* All paragraphs - DARK text */
+    p, span, div, label {
+        color: #1E293B !important;
+    }
+    
+    /* SIDEBAR - Light Background, Dark Text */
     [data-testid="stSidebar"] {
-        background-color: #f8f9fa;
+        background-color: #F8F9FA !important;
+    }
+    
+    [data-testid="stSidebar"] > div {
+        background-color: #F8F9FA !important;
+    }
+    
+    /* Force ALL sidebar text to be visible */
+    [data-testid="stSidebar"] * {
+        color: #1E293B !important;
+    }
+    
+    [data-testid="stSidebar"] h1,
+    [data-testid="stSidebar"] h2,
+    [data-testid="stSidebar"] h3 {
+        color: #0F172A !important;
+        font-weight: 700 !important;
+    }
+    
+    [data-testid="stSidebar"] .stMarkdown,
+    [data-testid="stSidebar"] .stMarkdown p,
+    [data-testid="stSidebar"] .stMarkdown span {
+        color: #1E293B !important;
+    }
+    
+    /* Sidebar radio buttons */
+    [data-testid="stSidebar"] [role="radiogroup"] > label {
+        color: #1E293B !important;
+        font-weight: 500 !important;
+        padding: 0.5rem !important;
+        border-radius: 8px !important;
+        margin: 2px 0 !important;
+    }
+    
+    [data-testid="stSidebar"] [role="radiogroup"] > label:hover {
+        background-color: #E2E8F0 !important;
+        color: #0F172A !important;
+    }
+    
+    [data-testid="stSidebar"] [role="radiogroup"] > label > div {
+        color: #1E293B !important;
+    }
+    
+    /* Sidebar info box */
+    [data-testid="stSidebar"] .stAlert {
+        background-color: #DBEAFE !important;
+        color: #1E40AF !important;
+    }
+    
+    /* METRIC CARDS - Beautiful & Visible */
+    [data-testid="stMetric"] {
+        background-color: #F8F9FA !important;
+        padding: 1.2rem !important;
+        border-radius: 10px !important;
+        border-left: 5px solid #1f77b4 !important;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
+    }
+    
+    [data-testid="stMetricLabel"] {
+        color: #475569 !important;
+        font-weight: 600 !important;
+        font-size: 0.9rem !important;
+    }
+    
+    [data-testid="stMetricLabel"] > div {
+        color: #475569 !important;
+    }
+    
+    [data-testid="stMetricValue"] {
+        color: #0F172A !important;
+        font-weight: 800 !important;
+        font-size: 1.8rem !important;
+    }
+    
+    [data-testid="stMetricValue"] > div {
+        color: #0F172A !important;
+    }
+    
+    [data-testid="stMetricDelta"] {
+        color: #059669 !important;
+        font-weight: 600 !important;
+    }
+    
+    [data-testid="stMetricDelta"] > div {
+        color: #059669 !important;
+    }
+    
+    /* Buttons */
+    .stButton > button {
+        background-color: #1f77b4 !important;
+        color: #FFFFFF !important;
+        border: none !important;
+        border-radius: 8px !important;
+        padding: 0.5rem 1.5rem !important;
+        font-weight: 600 !important;
+    }
+    
+    .stButton > button:hover {
+        background-color: #1565C0 !important;
+        color: #FFFFFF !important;
+    }
+    
+    /* Download buttons */
+    .stDownloadButton > button {
+        background-color: #10B981 !important;
+        color: #FFFFFF !important;
+        border: none !important;
+        border-radius: 8px !important;
+        padding: 0.5rem 1.5rem !important;
+        font-weight: 600 !important;
+    }
+    
+    /* Select Box */
+    .stSelectbox > div > div,
+    .stMultiSelect > div > div {
+        background-color: #FFFFFF !important;
+        color: #0F172A !important;
+        border: 1px solid #CBD5E1 !important;
+        border-radius: 8px !important;
+    }
+    
+    .stSelectbox label,
+    .stMultiSelect label,
+    .stRadio > label,
+    .stSlider > label {
+        color: #0F172A !important;
+        font-weight: 600 !important;
+    }
+    
+    /* Tabs */
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 4px;
+        background-color: #F1F5F9 !important;
+        padding: 4px;
+        border-radius: 10px;
+    }
+    
+    .stTabs [data-baseweb="tab"] {
+        background-color: transparent !important;
+        color: #475569 !important;
+        font-weight: 600 !important;
+        border-radius: 8px;
+    }
+    
+    .stTabs [aria-selected="true"] {
+        background-color: #FFFFFF !important;
+        color: #0F172A !important;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    /* Alerts */
+    .stAlert {
+        border-radius: 8px !important;
+        padding: 1rem !important;
+    }
+    
+    /* Info alert */
+    div[data-baseweb="notification"][kind="info"] {
+        background-color: #DBEAFE !important;
+        color: #1E40AF !important;
+    }
+    
+    /* Success alert */
+    div[data-baseweb="notification"][kind="positive"] {
+        background-color: #DCFCE7 !important;
+        color: #166534 !important;
+    }
+    
+    /* Warning alert */
+    div[data-baseweb="notification"][kind="warning"] {
+        background-color: #FEF3C7 !important;
+        color: #92400E !important;
+    }
+    
+    /* Error alert */
+    div[data-baseweb="notification"][kind="negative"] {
+        background-color: #FEE2E2 !important;
+        color: #991B1B !important;
+    }
+    
+    /* DataFrames */
+    .stDataFrame {
+        background-color: #FFFFFF !important;
+        border: 1px solid #E2E8F0 !important;
+        border-radius: 8px !important;
+    }
+    
+    /* Slider */
+    .stSlider > div > div > div {
+        background-color: #1f77b4 !important;
+    }
+    
+    /* Expander */
+    .streamlit-expanderHeader {
+        background-color: #F8F9FA !important;
+        color: #0F172A !important;
+        border-radius: 8px !important;
+    }
+    
+    /* Mobile responsive */
+    @media (max-width: 768px) {
+        .main-header {
+            font-size: 1.8rem !important;
+        }
+        
+        .sub-header {
+            font-size: 1rem !important;
+        }
+        
+        [data-testid="stMetricValue"] {
+            font-size: 1.4rem !important;
+        }
     }
     
     </style>
@@ -167,7 +390,7 @@ with st.sidebar:
     st.markdown("---")
     
     page = st.radio(
-        "📊 **Choose Analysis**",
+        "📊 **Navigation**",
         [
             "🏠 Home",
             "🗺️ State Overview",
@@ -204,7 +427,6 @@ if page == "🏠 Home":
     st.markdown('<p class="sub-header">Comprehensive analysis of India\'s past, present & future</p>', unsafe_allow_html=True)
     
     if data_loaded:
-        # Metrics
         col1, col2, col3, col4 = st.columns(4)
         
         with col1:
@@ -220,7 +442,6 @@ if page == "🏠 Home":
         
         st.markdown("---")
         
-        # Main visualization
         st.subheader("📊 State Performance Overview")
         
         fig = px.scatter(
@@ -239,12 +460,11 @@ if page == "🏠 Home":
             },
             size_max=50
         )
-        fig.update_layout(height=500, title_font_size=16)
+        fig.update_layout(height=500)
         st.plotly_chart(fig, use_container_width=True)
         
         st.markdown("---")
         
-        # Quick info
         col1, col2 = st.columns(2)
         
         with col1:
@@ -277,7 +497,6 @@ if page == "🏠 Home":
         
         st.markdown("---")
         
-        # Featured insights
         st.subheader("💡 Featured Insights")
         
         col1, col2, col3 = st.columns(3)
@@ -329,15 +548,10 @@ elif page == "🗺️ State Overview":
         sorted_data = predictions.sort_values(metric, ascending=True)
         
         fig = px.bar(
-            sorted_data,
-            x=metric,
-            y='State',
-            orientation='h',
-            color=metric,
-            color_continuous_scale='Blues',
+            sorted_data, x=metric, y='State', orientation='h',
+            color=metric, color_continuous_scale='Blues',
             title=f'India States: {metric.replace("_", " ")}',
-            text=metric,
-            height=900
+            text=metric, height=900
         )
         fig.update_traces(texttemplate='%{text:.1f}', textposition='outside')
         fig.update_layout(showlegend=False)
@@ -368,15 +582,10 @@ elif page == "📚 Literacy":
         sorted_lit = predictions.sort_values('Literacy_2024', ascending=True)
         
         fig = px.bar(
-            sorted_lit,
-            x='Literacy_2024',
-            y='State',
-            orientation='h',
-            color='Literacy_2024',
-            color_continuous_scale='Greens',
+            sorted_lit, x='Literacy_2024', y='State', orientation='h',
+            color='Literacy_2024', color_continuous_scale='Greens',
             title='Literacy Rate by State (2024)',
-            text='Literacy_2024',
-            height=900
+            text='Literacy_2024', height=900
         )
         fig.update_traces(texttemplate='%{text:.1f}%', textposition='outside')
         fig.update_layout(showlegend=False)
@@ -397,28 +606,23 @@ elif page == "👫 Gender":
             st.metric("💪 Best Ratio", best['State'], f"{best['SexRatio_2024']:.0f}")
         with col2:
             worst = predictions.nsmallest(1, 'SexRatio_2024').iloc[0]
-            st.metric("⚠️ Lowest Ratio", worst['State'], f"{worst['SexRatio_2024']:.0f}")
+            st.metric("⚠️ Lowest", worst['State'], f"{worst['SexRatio_2024']:.0f}")
         with col3:
             avg = predictions['SexRatio_2024'].mean()
-            st.metric("🇮🇳 National Avg", f"{avg:.0f}", "F per 1000 M")
+            st.metric("🇮🇳 National Avg", f"{avg:.0f}")
         
         st.markdown("---")
         
         sorted_sr = predictions.sort_values('SexRatio_2024', ascending=True)
         
         fig = px.bar(
-            sorted_sr,
-            x='SexRatio_2024',
-            y='State',
-            orientation='h',
-            color='SexRatio_2024',
-            color_continuous_scale='RdYlGn',
+            sorted_sr, x='SexRatio_2024', y='State', orientation='h',
+            color='SexRatio_2024', color_continuous_scale='RdYlGn',
             title='Sex Ratio (Females per 1000 Males)',
-            text='SexRatio_2024',
-            height=900
+            text='SexRatio_2024', height=900
         )
         fig.update_traces(texttemplate='%{text:.0f}', textposition='outside')
-        fig.add_vline(x=1000, line_dash="dash", line_color="red", annotation_text="Equal (1000)")
+        fig.add_vline(x=1000, line_dash="dash", line_color="red", annotation_text="Equal")
         fig.update_layout(showlegend=False)
         st.plotly_chart(fig, use_container_width=True)
 
@@ -450,10 +654,8 @@ elif page == "🕊️ Religion":
             
             with col1:
                 fig = px.pie(
-                    values=totals.values,
-                    names=totals.index,
-                    title='Religious Composition of India',
-                    hole=0.4
+                    values=totals.values, names=totals.index,
+                    title='Religious Composition of India', hole=0.4
                 )
                 fig.update_traces(textposition='outside', textinfo='percent+label')
                 st.plotly_chart(fig, use_container_width=True)
@@ -506,7 +708,7 @@ elif page == "💼 Economy":
             st.metric("⚠️ Lowest", poorest['State'], f"₹{poorest['Per_Capita_Income_2024']:.2f}L")
         with col3:
             avg = predictions['Per_Capita_Income_2024'].mean()
-            st.metric("🇮🇳 National Avg", f"₹{avg:.2f} Lakh")
+            st.metric("🇮🇳 Avg", f"₹{avg:.2f} Lakh")
         
         st.markdown("---")
         
@@ -540,7 +742,7 @@ elif page == "🌐 Digital India":
             st.metric("⚠️ Lowest", least['State'], f"{least['Internet_Users_2024']}%")
         with col3:
             avg = predictions['Internet_Users_2024'].mean()
-            st.metric("📊 National Avg", f"{avg:.0f}%")
+            st.metric("📊 Average", f"{avg:.0f}%")
         
         st.markdown("---")
         
@@ -574,7 +776,7 @@ elif page == "🏙️ Urban vs Rural":
             st.metric("🌾 Most Rural", rural['State'], f"{100-rural['Urban_Percentage_2024']:.1f}%")
         with col3:
             avg = predictions['Urban_Percentage_2024'].mean()
-            st.metric("🇮🇳 Avg Urban", f"{avg:.1f}%")
+            st.metric("🇮🇳 Avg", f"{avg:.1f}%")
         
         st.markdown("---")
         
@@ -604,8 +806,6 @@ elif page == "🔍 Hidden Patterns":
         **🚨 Surprising Finding: Education ≠ Gender Equality!**
         
         Correlation between Literacy and Sex Ratio: **{correlation:.3f}** (nearly zero!)
-        
-        Even highly educated states have poor sex ratios.
         """)
         
         st.markdown("---")
@@ -614,7 +814,7 @@ elif page == "🔍 Hidden Patterns":
             predictions, x='Literacy_2024', y='SexRatio_2024',
             size='Population_2024', color='Per_Capita_Income_2024',
             hover_name='State', color_continuous_scale='Plasma',
-            title='Literacy vs Sex Ratio (Bubble = Population, Color = Income)',
+            title='Literacy vs Sex Ratio',
             size_max=50
         )
         fig.add_hline(y=1000, line_dash="dash", line_color="red")
@@ -639,9 +839,7 @@ elif page == "📊 State Comparison":
         if len(states) >= 2:
             filtered = predictions[predictions['State'].isin(states)]
             
-            # Radar chart
             fig = go.Figure()
-            
             for _, row in filtered.iterrows():
                 fig.add_trace(go.Scatterpolar(
                     r=[row['Population_2024']*2, row['Literacy_2024'], row['SexRatio_2024']/15,
@@ -657,9 +855,8 @@ elif page == "📊 State Comparison":
             )
             st.plotly_chart(fig, use_container_width=True)
             
-            st.markdown("### 📋 Detailed Comparison")
-            st.dataframe(filtered[['State', 'Population_2024', 'Literacy_2024', 'SexRatio_2024', 
-                                  'Per_Capita_Income_2024', 'Internet_Users_2024']].round(2),
+            st.dataframe(filtered[['State', 'Population_2024', 'Literacy_2024', 
+                                  'SexRatio_2024', 'Per_Capita_Income_2024', 'Internet_Users_2024']].round(2),
                         use_container_width=True)
 
 # ============================================
@@ -760,7 +957,7 @@ elif page == "🔮 2030 Predictions":
     st.markdown("---")
     
     if data_loaded:
-        st.info(f"📊 Real 2026 population: ~147 Cr | Our 2030 prediction: ~{predictions['Population_2030'].sum():.0f} Cr")
+        st.info(f"📊 Real 2026: ~147 Cr | Our 2030 prediction: ~{predictions['Population_2030'].sum():.0f} Cr")
         
         col1, col2, col3, col4 = st.columns(4)
         
