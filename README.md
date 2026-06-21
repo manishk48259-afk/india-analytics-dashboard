@@ -4,8 +4,9 @@ A comprehensive data analytics dashboard analyzing India's demographics, economy
 
 ## 🚀 Live Demo
 
-[View Live Dashboard](https://your-app-url.streamlit.app)
+[**🌐 View Live Dashboard**](https://india-analytics-manish.streamlit.app)
 
+![Dashboard Preview](https://your-screenshot-link.png)
 ## ✨ Features
 
 - 🏠 **Interactive Home Page** with key metrics
