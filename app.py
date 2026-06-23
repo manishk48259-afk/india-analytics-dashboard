@@ -26,10 +26,23 @@ st.set_page_config(
 # ============================================
 st.markdown("""
     <style>
-    /* Hide Streamlit branding */
+    /* Hide Streamlit menu but KEEP header for mobile sidebar toggle */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
-    header {visibility: hidden;}
+    
+    /* IMPORTANT: Show header for ☰ menu icon on mobile */
+    header[data-testid="stHeader"] {
+        background-color: rgba(248, 249, 250, 0.95) !important;
+        backdrop-filter: blur(10px);
+        height: 3rem;
+        display: flex !important;
+        visibility: visible !important;
+    }
+    
+    /* Hide deploy button only */
+    .stDeployButton {
+        display: none !important;
+    }
     
     /* Force Light Background Everywhere */
     .stApp {
@@ -117,7 +130,31 @@ st.markdown("""
         color: #1E40AF !important;
     }
     
-    /* METRIC CARDS - Beautiful & Visible */
+    /* HAMBURGER MENU ICON - IMPORTANT FOR MOBILE */
+    button[kind="header"] {
+        color: #1f77b4 !important;
+        background-color: rgba(31, 119, 180, 0.1) !important;
+        border-radius: 8px !important;
+        padding: 8px !important;
+        margin: 5px !important;
+    }
+    
+    button[kind="header"]:hover {
+        background-color: rgba(31, 119, 180, 0.2) !important;
+    }
+    
+    /* Make hamburger more visible */
+    [data-testid="collapsedControl"] {
+        display: block !important;
+        visibility: visible !important;
+        background-color: #1f77b4 !important;
+        color: white !important;
+        border-radius: 8px !important;
+        padding: 8px !important;
+        margin: 5px !important;
+    }
+    
+    /* METRIC CARDS */
     [data-testid="stMetric"] {
         background-color: #F8F9FA !important;
         padding: 1.2rem !important;
@@ -132,27 +169,15 @@ st.markdown("""
         font-size: 0.9rem !important;
     }
     
-    [data-testid="stMetricLabel"] > div {
-        color: #475569 !important;
-    }
-    
     [data-testid="stMetricValue"] {
         color: #0F172A !important;
         font-weight: 800 !important;
         font-size: 1.8rem !important;
     }
     
-    [data-testid="stMetricValue"] > div {
-        color: #0F172A !important;
-    }
-    
     [data-testid="stMetricDelta"] {
         color: #059669 !important;
         font-weight: 600 !important;
-    }
-    
-    [data-testid="stMetricDelta"] > div {
-        color: #059669 !important;
     }
     
     /* Buttons */
@@ -163,11 +188,6 @@ st.markdown("""
         border-radius: 8px !important;
         padding: 0.5rem 1.5rem !important;
         font-weight: 600 !important;
-    }
-    
-    .stButton > button:hover {
-        background-color: #1565C0 !important;
-        color: #FFFFFF !important;
     }
     
     /* Download buttons */
@@ -189,14 +209,6 @@ st.markdown("""
         border-radius: 8px !important;
     }
     
-    .stSelectbox label,
-    .stMultiSelect label,
-    .stRadio > label,
-    .stSlider > label {
-        color: #0F172A !important;
-        font-weight: 600 !important;
-    }
-    
     /* Tabs */
     .stTabs [data-baseweb="tab-list"] {
         gap: 4px;
@@ -205,41 +217,16 @@ st.markdown("""
         border-radius: 10px;
     }
     
-    .stTabs [data-baseweb="tab"] {
-        background-color: transparent !important;
-        color: #475569 !important;
-        font-weight: 600 !important;
-        border-radius: 8px;
-    }
-    
     .stTabs [aria-selected="true"] {
         background-color: #FFFFFF !important;
         color: #0F172A !important;
         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
     
-    /* Alerts */
-    .stAlert {
-        border-radius: 8px !important;
-        padding: 1rem !important;
-    }
-    
     /* DataFrames */
     .stDataFrame {
         background-color: #FFFFFF !important;
         border: 1px solid #E2E8F0 !important;
-        border-radius: 8px !important;
-    }
-    
-    /* Slider */
-    .stSlider > div > div > div {
-        background-color: #1f77b4 !important;
-    }
-    
-    /* Expander */
-    .streamlit-expanderHeader {
-        background-color: #F8F9FA !important;
-        color: #0F172A !important;
         border-radius: 8px !important;
     }
     
@@ -256,11 +243,16 @@ st.markdown("""
         [data-testid="stMetricValue"] {
             font-size: 1.4rem !important;
         }
+        
+        /* Make hamburger menu more prominent on mobile */
+        [data-testid="collapsedControl"] {
+            font-size: 24px !important;
+            padding: 12px !important;
+        }
     }
     
     </style>
 """, unsafe_allow_html=True)
-
 # ============================================
 # LOAD DATA
 # ============================================
